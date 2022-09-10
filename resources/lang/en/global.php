@@ -8,6 +8,7 @@ return [
     'clickHereToVerify'              => 'Click here to verify',
     'create'                         => 'Create',
     'dashboard'                      => 'Dashboard',
+    'mint'                           => 'Mint',
     'delete'                         => 'Delete',
     'cancel'                         => 'Cancel',
     'clear'                          => 'Clear',

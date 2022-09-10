@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Collection;
 
+use App\Jobs\CreateNftCollection;
 use App\Models\Collection;
 use App\Models\Pass;
 use Livewire\Component;
@@ -30,6 +31,8 @@ class Create extends Component
         $this->validate();
 
         $this->collection->save();
+
+        CreateNftCollection::dispatch($this->collection->id);
 
         return redirect()->route('admin.collections.index');
     }

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "50934c77538af873a6fe40c605b27781",
+    "content-hash": "9bacfd108102fac8d1aed0d4fb97280c",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5912,6 +5912,75 @@
                 "source": "https://github.com/tijsverkoyen/CssToInlineStyles/tree/2.2.4"
             },
             "time": "2021-12-08T09:12:39+00:00"
+        },
+        {
+            "name": "trustenterprises/hashgraph",
+            "version": "2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/trustenterprises/laravel-hashgraph.git",
+                "reference": "330f8555dd5334fa5d1f338a1e3b740ec1ccf035"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/trustenterprises/laravel-hashgraph/zipball/330f8555dd5334fa5d1f338a1e3b740ec1ccf035",
+                "reference": "330f8555dd5334fa5d1f338a1e3b740ec1ccf035",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "guzzlehttp/guzzle": "^7.0",
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "laravel/legacy-factories": "^v1.3.0",
+                "orchestra/testbench": "^7.6.1",
+                "phpunit/phpunit": "^9.5.21",
+                "vimeo/psalm": "^4.26"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Trustenterprises\\LaravelHashgraph\\LaravelHashgraphServiceProvider"
+                    ],
+                    "aliases": {
+                        "LaravelHashgraph": "Trustenterprises\\LaravelHashgraph\\LaravelHashgraphFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Trustenterprises\\LaravelHashgraph\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Matt Smithies",
+                    "email": "info@mattsmithies.co.uk",
+                    "homepage": "https://trust.enterprises/",
+                    "role": "Technical Founder"
+                }
+            ],
+            "description": "Laravel package to integrate with Trust Enterprises Hedera REST API",
+            "homepage": "https://github.com//laravel-hashgraph",
+            "keywords": [
+                "blockchain",
+                "crypto",
+                "hashgraph",
+                "hedera",
+                "laravel",
+                "trust"
+            ],
+            "support": {
+                "issues": "https://github.com/trustenterprises/laravel-hashgraph/issues",
+                "source": "https://github.com/trustenterprises/laravel-hashgraph/tree/2.0.1"
+            },
+            "time": "2022-08-29T13:19:56+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

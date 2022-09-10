@@ -114,15 +114,17 @@
                                             {{ trans('global.view') }}
                                         </a>
                                     @endcan
-                                    @can('nft_edit')
+                                    @can('nft_edit_hide')
                                         <a class="btn btn-sm btn-success mr-2" href="{{ route('admin.nfts.edit', $nft) }}">
                                             {{ trans('global.edit') }}
                                         </a>
                                     @endcan
                                     @can('nft_delete')
-                                        <button class="btn btn-sm btn-rose mr-2" type="button" wire:click="confirm('delete', {{ $nft->id }})" wire:loading.attr="disabled">
-                                            {{ trans('global.delete') }}
-                                        </button>
+                                        @if(!!!$nft->total_minted)
+                                            <button class="btn btn-sm btn-rose mr-2" type="button" wire:click="confirm('delete', {{ $nft->id }})" wire:loading.attr="disabled">
+                                                {{ trans('global.delete') }}
+                                            </button>
+                                        @endif
                                     @endcan
                                 </div>
                             </td>
