@@ -18,15 +18,18 @@ class CollectionApiController extends Controller
     {
         abort_if(Gate::denies('collection_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new CollectionResource(Collection::with(['pass', 'team'])->get());
+        $collections = Collection::whereNotNull('pass_id')
+            ->whereNotNull('token')
+            ->where('supply', config('nft.pass_supply')) // Add to config
+            ->get()
+            ->makeHidden(['created_at', 'updated_at', 'deleted_at', 'pass_id', 'team_id']);
+
+        return new CollectionResource($collections);
     }
 
     public function store(StoreCollectionRequest $request)
     {
         $collection = Collection::create($request->validated());
-
-        // TODO: New job for create collection
-        CreateNftCollection::dispatch($collection->id);
 
         return (new CollectionResource($collection))
             ->response()
@@ -37,7 +40,7 @@ class CollectionApiController extends Controller
     {
         abort_if(Gate::denies('collection_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new CollectionResource($collection->load(['pass', 'team']));
+        return new CollectionResource($collection);
     }
 
     public function update(UpdateCollectionRequest $request, Collection $collection)

@@ -32,8 +32,6 @@ class Create extends Component
 
         $this->collection->save();
 
-        CreateNftCollection::dispatch($this->collection->id);
-
         return redirect()->route('admin.collections.index');
     }
 

@@ -121,9 +121,11 @@
                                         </a>
                                     @endcan
                                     @can('collection_delete')
-                                        <button class="btn btn-sm btn-rose mr-2" type="button" wire:click="confirm('delete', {{ $collection->id }})" wire:loading.attr="disabled">
-                                            {{ trans('global.delete') }}
-                                        </button>
+                                        @if(!!!$collection->token)
+                                            <button class="btn btn-sm btn-rose mr-2" type="button" wire:click="confirm('delete', {{ $collection->id }})" wire:loading.attr="disabled">
+                                                {{ trans('global.delete') }}
+                                            </button>
+                                        @endif
                                     @endcan
                                 </div>
                             </td>

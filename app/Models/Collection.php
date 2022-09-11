@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Jobs\CreateNftCollection;
 use \DateTimeInterface;
 use App\Support\HasAdvancedFilter;
 use App\Traits\Tenantable;
@@ -48,6 +49,12 @@ class Collection extends Model
         'deleted_at',
     ];
 
+//    protected $hidden = [
+//        'updated_at',
+//        'created_at',
+//        'deleted_at',
+//    ];
+
     protected $fillable = [
         'symbol',
         'name',
@@ -56,6 +63,15 @@ class Collection extends Model
         'release_at',
         'pass_id',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($model) {
+            CreateNftCollection::dispatch($model->id);
+        });
+    }
 
     public function getReleaseAtAttribute($value)
     {
@@ -76,6 +92,11 @@ class Collection extends Model
     {
         return $this->belongsTo(Team::class);
     }
+
+//    public function hasPassExpectedSupply()
+//    {
+//        return $this->pass()->where('supply', 300);
+//    }
 
     protected function serializeDate(DateTimeInterface $date)
     {

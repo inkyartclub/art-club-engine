@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements HasLocalePreference
 {
@@ -21,6 +22,7 @@ class User extends Authenticatable implements HasLocalePreference
     use Notifiable;
     use HasTeam;
     use SoftDeletes;
+    use HasApiTokens;
 
     public $table = 'users';
 
@@ -93,6 +95,11 @@ class User extends Authenticatable implements HasLocalePreference
     public function roles()
     {
         return $this->belongsToMany(Role::class);
+    }
+
+    public function isAdmin()
+    {
+        return $this->roles()->where('title', 'Admin')->exists();
     }
 
     public function team()
