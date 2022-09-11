@@ -139,6 +139,8 @@ return [
             'team_helper'        => ' ',
             'pass'               => 'Pass',
             'pass_helper'        => 'This is a optional link to a parent pass that can manage the claiming process',
+            'image_url'          => 'Image Url',
+            'image_url_helper'   => 'This is the image URL that the frontend claiming page can pull from',
         ],
     ],
     'metadata' => [

@@ -65,6 +65,10 @@
                             @include('components.table.sort', ['field' => 'token'])
                         </th>
                         <th>
+                            {{ trans('cruds.collection.fields.image_url') }}
+                            @include('components.table.sort', ['field' => 'image_url'])
+                        </th>
+                        <th>
                             {{ trans('cruds.collection.fields.release_at') }}
                             @include('components.table.sort', ['field' => 'release_at'])
                         </th>
@@ -99,6 +103,9 @@
                             </td>
                             <td>
                                 {{ $collection->token }}
+                            </td>
+                            <td>
+                                {{ $collection->image_url }}
                             </td>
                             <td>
                                 {{ $collection->release_at }}

@@ -40,6 +40,16 @@
             {{ trans('cruds.collection.fields.royalty_fee_helper') }}
         </div>
     </div>
+    <div class="form-group {{ $errors->has('collection.image_url') ? 'invalid' : '' }}">
+        <label class="form-label" for="image_url">{{ trans('cruds.collection.fields.image_url') }}</label>
+        <input class="form-control" type="text" name="image_url" id="image_url" wire:model.defer="collection.image_url">
+        <div class="validation-message">
+            {{ $errors->first('collection.image_url') }}
+        </div>
+        <div class="help-block">
+            {{ trans('cruds.collection.fields.image_url_helper') }}
+        </div>
+    </div>
     <div class="form-group {{ $errors->has('collection.release_at') ? 'invalid' : '' }}">
         <label class="form-label required" for="release_at">{{ trans('cruds.collection.fields.release_at') }}</label>
         <x-date-picker class="form-control" required wire:model="collection.release_at" id="release_at" name="release_at" />

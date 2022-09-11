@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Metadata;
 
-use App\Jobs\GenerateMetadataThroughAdmin;
 use App\Models\Metadata;
 use Livewire\Component;
 
@@ -26,8 +25,6 @@ class Create extends Component
         $this->validate();
 
         $this->metadata->save();
-
-//        GenerateMetadataThroughAdmin::dispatch($this->metadata->id);
 
         return redirect()->route('admin.metadatas.index');
     }

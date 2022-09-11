@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCollectionRequest;
 use App\Http\Requests\UpdateCollectionRequest;
 use App\Http\Resources\Admin\CollectionResource;
-use App\Jobs\CreateNftCollection;
 use App\Models\Collection;
 use Gate;
 use Illuminate\Http\Request;
@@ -24,9 +23,6 @@ class CollectionApiController extends Controller
     public function store(StoreCollectionRequest $request)
     {
         $collection = Collection::create($request->validated());
-
-        // TODO: New job for create collection
-        CreateNftCollection::dispatch($collection->id);
 
         return (new CollectionResource($collection))
             ->response()

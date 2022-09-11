@@ -67,6 +67,14 @@
                         </tr>
                         <tr>
                             <th>
+                                {{ trans('cruds.collection.fields.image_url') }}
+                            </th>
+                            <td>
+                                {{ $collection->image_url }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
                                 {{ trans('cruds.collection.fields.release_at') }}
                             </th>
                             <td>

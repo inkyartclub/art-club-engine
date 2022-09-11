@@ -15,6 +15,7 @@ class CreateCollectionsTable extends Migration
             $table->string('supply')->nullable();
             $table->float('royalty_fee', 3, 2);
             $table->string('token')->nullable();
+            $table->string('image_url')->nullable();
             $table->datetime('release_at');
             $table->timestamps();
             $table->softDeletes();

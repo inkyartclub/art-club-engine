@@ -41,6 +41,10 @@ class StoreCollectionRequest extends FormRequest
                 'numeric',
                 'required',
             ],
+            'image_url' => [
+                'string',
+                'nullable',
+            ],
             'collection.release_at' => [
                 'required',
                 'date_format:' . config('project.datetime_format'),
