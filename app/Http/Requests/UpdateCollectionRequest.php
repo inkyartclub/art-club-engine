@@ -37,6 +37,10 @@ class UpdateCollectionRequest extends FormRequest
                 'numeric',
                 'required',
             ],
+            'collection.image_url' => [
+                'string',
+                'required',
+            ],
             'collection.release_at' => [
                 'required',
                 'date_format:' . config('project.datetime_format'),

@@ -27,6 +27,7 @@ class Collection extends Model
         'supply',
         'royalty_fee',
         'token',
+        'image_url',
         'release_at',
         'pass.token',
     ];
@@ -38,6 +39,7 @@ class Collection extends Model
         'supply',
         'royalty_fee',
         'token',
+        'image_url',
         'release_at',
         'pass.token',
     ];
@@ -60,6 +62,7 @@ class Collection extends Model
         'name',
         'supply',
         'royalty_fee',
+        'image_url',
         'release_at',
         'pass_id',
     ];
