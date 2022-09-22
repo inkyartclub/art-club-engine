@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\V1\Admin\CollectionApiController;
 use App\Http\Controllers\Api\V1\Admin\MetadataApiController;
 use App\Http\Controllers\Api\V1\Admin\NftApiController;
 use App\Http\Controllers\Api\V1\Admin\PassApiController;
+use App\Http\Controllers\Api\V1\CheckNftClaimStatus;
 use App\Http\Controllers\Auth\GenerateTokenController;
 
 Route::group(['prefix' => 'v1', 'as' => 'api.', 'middleware' => ['auth:sanctum']], function () {
@@ -22,6 +23,9 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'middleware' => ['auth:sanctum']
 
     // Claim
     Route::apiResource('claims', ClaimApiController::class, ['only' => ['index', 'show', 'destroy']]);
+
+    // Check claim status
+    Route::get('claim/{serial}/status', CheckNftClaimStatus::class);
 });
 
 Route::post('/sanctum/token', GenerateTokenController::class);
