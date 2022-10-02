@@ -190,6 +190,10 @@ class PermissionsTableSeeder extends Seeder
                 'id'    => 45,
                 'title' => 'claim_access',
             ],
+            [
+                'id'    => 46,
+                'title' => 'claim_api',
+            ],
         ];
 
         Permission::insert($permissions);

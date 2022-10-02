@@ -16,5 +16,9 @@ class PermissionRoleTableSeeder extends Seeder
             return substr($permission->title, 0, 5) != 'user_' && substr($permission->title, 0, 5) != 'role_' && substr($permission->title, 0, 11) != 'permission_' && substr($permission->title, 0, 5) != 'team_';
         });
         Role::findOrFail(2)->permissions()->sync($user_permissions);
+
+        // API permissions
+        $api_permissions = Permission::where('id', 46)->pluck('id');
+        Role::findOrFail(3)->permissions()->sync($api_permissions);
     }
 }
