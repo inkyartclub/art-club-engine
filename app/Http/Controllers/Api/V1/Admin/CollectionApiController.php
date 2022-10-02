@@ -16,7 +16,7 @@ class CollectionApiController extends Controller
 {
     public function index()
     {
-        abort_if(Gate::denies('collection_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('claim_api'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $collections = Collection::whereNotNull('pass_id')
             ->whereNotNull('token')
