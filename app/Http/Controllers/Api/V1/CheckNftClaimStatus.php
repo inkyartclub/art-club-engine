@@ -7,6 +7,7 @@ use App\Models\Claim;
 use App\Models\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Gate;
 
 class CheckNftClaimStatus extends Controller
 {
@@ -18,23 +19,26 @@ class CheckNftClaimStatus extends Controller
      */
     public function __invoke(Request $request)
     {
-        abort_if(Gate::denies('claim_state'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('claim_api'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $serial_claims = Claim::only(['collection_id'])
-            ->whereSerial($request->serial)
-            ->whereNull('claimed_at')
+        $serial_claims = Claim::where('serial', $request->serial)
+            ->select(['collection_id', 'claimed_at'])
+            ->whereNotNull('claimed_at')
             ->get();
 
         // Get all active claimable collections.
-        $claimable_collections = Collection::only(['token'])
-            ->whereNotNull('token')
-            ->whereNotIn('token', $serial_claims)
+        // If we use this for multiple passes we would need to be more clever on checking the right pass and supply etc
+        $claimable_collections = Collection::whereNotNull('token')
+            ->select(['token', 'name'])
+            ->whereNotIn('id', $serial_claims->map(fn ($coll) => $coll->collection_id))
+            ->whereNotNull('pass_id')
+            ->where('supply', 300)
             ->where('release_at', '<=', now())
             ->get();
 
         return [
-            'claimable_count' =>  count($claimable_collections),
-            'collection_ids' =>  $claimable_collections
+            'claimable_count' => count($claimable_collections),
+            'nfts' => $claimable_collections
         ];
     }
 }
