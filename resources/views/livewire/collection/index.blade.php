@@ -85,7 +85,7 @@
                     <tr>
                         <td>
                             <input type="checkbox" value="{{ $collection->id }}" wire:model="selected">
-         §               </td>
+                        </td>
                         <td>
                             {{ $collection->id }}
                         </td>
