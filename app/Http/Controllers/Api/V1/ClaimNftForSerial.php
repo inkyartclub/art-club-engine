@@ -28,7 +28,6 @@ class ClaimNftForSerial extends Controller
         $serial = $request->serial;
 
         $nft_collection = Collection::where('token', $nft_id)->first();
-//        $nft_collection = Collection::where('token', '0.0.48219826')->first();
 
         abort_unless(!!$nft_collection, Response::HTTP_UNPROCESSABLE_ENTITY, 'NFT collection id not found');
         abort_unless(!!$nft_collection->pass, Response::HTTP_UNPROCESSABLE_ENTITY, 'Unable to process NFT with no pass');
