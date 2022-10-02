@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Jobs\GenerateMetadataThroughAdmin;
 use \DateTimeInterface;
 use App\Support\HasAdvancedFilter;
 use App\Traits\Tenantable;
@@ -51,6 +52,21 @@ class Metadata extends Model
         'cid',
         'type',
     ];
+
+//    protected $hidden = [
+//        'updated_at',
+//        'created_at',
+//        'deleted_at',
+//    ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::created(function($model) {
+            GenerateMetadataThroughAdmin::dispatch($model->id);
+        });
+    }
 
     public function team()
     {

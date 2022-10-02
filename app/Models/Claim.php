@@ -44,6 +44,13 @@ class Claim extends Model
         'deleted_at',
     ];
 
+    protected $fillable = [
+      'serial',
+      'claimed_at',
+      'collection_id',
+      'claim_account'
+    ];
+
     public function collection()
     {
         return $this->belongsTo(Collection::class);

@@ -47,16 +47,13 @@ class GenerateMetadataThroughAdmin implements ShouldQueue
 
         $nft_meta = new NftMetadata($formatted);
 
-        error_log(json_encode($nft_meta->forRequest()));
-
-//        $generated = LaravelHashgraph::generateMetadataForNft($nft_meta);
+        $generated = LaravelHashgraph::generateMetadataForNft($nft_meta);
 //
-//        if (!$generated->isSuccessful()) {
-//            throw new \Error('failed to generate metadata');
-//        }
+        if (!$generated->isSuccessful()) {
+            throw new \Error('failed to generate metadata');
+        }
 
-//        $metadata->generated_cid = $generated->getCid();
-        $metadata->generated_cid = 'cid';
+        $metadata->generated_cid = $generated->getCid();
         $metadata->save();
     }
 }

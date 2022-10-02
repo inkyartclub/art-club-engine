@@ -57,7 +57,7 @@ class Create extends Component
 
     protected function initListsForFields(): void
     {
-        $this->listsForFields['collection'] = Collection::pluck('name', 'id')->toArray();
-        $this->listsForFields['metadata']   = Metadata::pluck('name', 'id')->toArray();
+        $this->listsForFields['collection'] = Collection::whereNotNull('token')->pluck('name', 'id')->toArray();
+        $this->listsForFields['metadata']   = Metadata::whereNotNull('generated_cid')->pluck('name', 'id')->toArray();
     }
 }

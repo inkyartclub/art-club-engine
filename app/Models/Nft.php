@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Jobs\MintNftCollection;
 use \DateTimeInterface;
 use App\Support\HasAdvancedFilter;
 use App\Traits\Tenantable;
@@ -49,6 +50,21 @@ class Nft extends Model
         'metadata_id',
         'total_to_mint',
     ];
+
+//    protected $hidden = [
+//        'updated_at',
+//        'created_at',
+//        'deleted_at',
+//    ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($model) {
+            MintNftCollection::dispatch($model->id);
+        });
+    }
 
     public function collection()
     {

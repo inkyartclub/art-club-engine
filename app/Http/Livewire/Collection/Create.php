@@ -32,8 +32,6 @@ class Create extends Component
 
         $this->collection->save();
 
-        CreateNftCollection::dispatch($this->collection->id);
-
         return redirect()->route('admin.collections.index');
     }
 
@@ -55,6 +53,10 @@ class Create extends Component
             'collection.royalty_fee' => [
                 'numeric',
                 'required',
+            ],
+            'collection.image_url' => [
+                'string',
+                'nullable',
             ],
             'collection.release_at' => [
                 'required',

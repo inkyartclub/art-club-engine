@@ -40,11 +40,11 @@ class CreateNftCollection implements ShouldQueue
 
         $nft->setRoyaltyFee($create->royalty_fee);
 
-//        `TDOD: setup endpoints
-//        $minted_collection = LaravelHashgraph::createNonFungibleToken($nft);
-//        $create->token = $minted_collection->getTokenId();
-//        $create->save();
-
         error_log(json_encode($nft->forNftRequest()));
+
+        $minted_collection = LaravelHashgraph::createNonFungibleToken($nft);
+
+        $create->token = $minted_collection->getTokenId();
+        $create->save();
     }
 }

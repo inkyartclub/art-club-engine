@@ -43,6 +43,10 @@ class Edit extends Component
                 'string',
                 'required',
             ],
+            'collection.image_url' => [
+                'string',
+                'required',
+            ],
             'collection.royalty_fee' => [
                 'numeric',
                 'required',

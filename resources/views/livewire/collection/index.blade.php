@@ -37,102 +37,109 @@
         <div class="overflow-x-auto">
             <table class="table table-index w-full">
                 <thead>
-                    <tr>
-                        <th class="w-9">
-                        </th>
-                        <th class="w-28">
-                            {{ trans('cruds.collection.fields.id') }}
-                            @include('components.table.sort', ['field' => 'id'])
-                        </th>
-                        <th>
-                            {{ trans('cruds.collection.fields.symbol') }}
-                            @include('components.table.sort', ['field' => 'symbol'])
-                        </th>
-                        <th>
-                            {{ trans('cruds.collection.fields.name') }}
-                            @include('components.table.sort', ['field' => 'name'])
-                        </th>
-                        <th>
-                            {{ trans('cruds.collection.fields.supply') }}
-                            @include('components.table.sort', ['field' => 'supply'])
-                        </th>
-                        <th>
-                            {{ trans('cruds.collection.fields.royalty_fee') }}
-                            @include('components.table.sort', ['field' => 'royalty_fee'])
-                        </th>
-                        <th>
-                            {{ trans('cruds.collection.fields.token') }}
-                            @include('components.table.sort', ['field' => 'token'])
-                        </th>
-                        <th>
-                            {{ trans('cruds.collection.fields.release_at') }}
-                            @include('components.table.sort', ['field' => 'release_at'])
-                        </th>
-                        <th>
-                            {{ trans('cruds.collection.fields.pass') }}
-                            @include('components.table.sort', ['field' => 'pass.token'])
-                        </th>
-                        <th>
-                        </th>
-                    </tr>
+                <tr>
+                    <th class="w-9">
+                    </th>
+                    <th class="w-28">
+                        {{ trans('cruds.collection.fields.id') }}
+                        @include('components.table.sort', ['field' => 'id'])
+                    </th>
+                    <th>
+                        {{ trans('cruds.collection.fields.symbol') }}
+                        @include('components.table.sort', ['field' => 'symbol'])
+                    </th>
+                    <th>
+                        {{ trans('cruds.collection.fields.name') }}
+                        @include('components.table.sort', ['field' => 'name'])
+                    </th>
+                    <th>
+                        {{ trans('cruds.collection.fields.supply') }}
+                        @include('components.table.sort', ['field' => 'supply'])
+                    </th>
+                    <th>
+                        {{ trans('cruds.collection.fields.royalty_fee') }}
+                        @include('components.table.sort', ['field' => 'royalty_fee'])
+                    </th>
+                    <th>
+                        {{ trans('cruds.collection.fields.token') }}
+                        @include('components.table.sort', ['field' => 'token'])
+                    </th>
+                    <th>
+                        {{ trans('cruds.collection.fields.image_url') }}
+                        @include('components.table.sort', ['field' => 'image_url'])
+                    </th>
+                    <th>
+                        {{ trans('cruds.collection.fields.release_at') }}
+                        @include('components.table.sort', ['field' => 'release_at'])
+                    </th>
+                    <th>
+                        {{ trans('cruds.collection.fields.pass') }}
+                        @include('components.table.sort', ['field' => 'pass.token'])
+                    </th>
+                    <th>
+                    </th>
+                </tr>
                 </thead>
                 <tbody>
-                    @forelse($collections as $collection)
-                        <tr>
-                            <td>
-                                <input type="checkbox" value="{{ $collection->id }}" wire:model="selected">
-                            </td>
-                            <td>
-                                {{ $collection->id }}
-                            </td>
-                            <td>
-                                {{ $collection->symbol }}
-                            </td>
-                            <td>
-                                {{ $collection->name }}
-                            </td>
-                            <td>
-                                {{ $collection->supply }}
-                            </td>
-                            <td>
-                                {{ $collection->royalty_fee }}
-                            </td>
-                            <td>
-                                {{ $collection->token }}
-                            </td>
-                            <td>
-                                {{ $collection->release_at }}
-                            </td>
-                            <td>
-                                @if($collection->pass)
-                                    <span class="badge badge-relationship">{{ $collection->pass->token ?? '' }}</span>
-                                @endif
-                            </td>
-                            <td>
-                                <div class="flex justify-end">
-                                    @can('collection_show')
-                                        <a class="btn btn-sm btn-info mr-2" href="{{ route('admin.collections.show', $collection) }}">
-                                            {{ trans('global.view') }}
-                                        </a>
-                                    @endcan
-                                    @can('collection_edit')
-                                        <a class="btn btn-sm btn-success mr-2" href="{{ route('admin.collections.edit', $collection) }}">
-                                            {{ trans('global.edit') }}
-                                        </a>
-                                    @endcan
-                                    @can('collection_delete')
-                                        <button class="btn btn-sm btn-rose mr-2" type="button" wire:click="confirm('delete', {{ $collection->id }})" wire:loading.attr="disabled">
-                                            {{ trans('global.delete') }}
-                                        </button>
-                                    @endcan
-                                </div>
-                            </td>
-                        </tr>
-                        @empty
-                        <tr>
-                            <td colspan="10">No entries found.</td>
-                        </tr>
-                    @endforelse
+                @forelse($collections as $collection)
+                    <tr>
+                        <td>
+                            <input type="checkbox" value="{{ $collection->id }}" wire:model="selected">
+                        </td>
+                        <td>
+                            {{ $collection->id }}
+                        </td>
+                        <td>
+                            {{ $collection->symbol }}
+                        </td>
+                        <td>
+                            {{ $collection->name }}
+                        </td>
+                        <td>
+                            {{ $collection->supply }}
+                        </td>
+                        <td>
+                            {{ $collection->royalty_fee }}
+                        </td>
+                        <td>
+                            {{ $collection->token }}
+                        </td>
+                        <td>
+                            {{ $collection->image_url }}
+                        </td>
+                        <td>
+                            {{ $collection->release_at }}
+                        </td>
+                        <td>
+                            @if($collection->pass)
+                                <span class="badge badge-relationship">{{ $collection->pass->token ?? '' }}</span>
+                            @endif
+                        </td>
+                        <td>
+                            <div class="flex justify-end">
+                                @can('collection_show')
+                                    <a class="btn btn-sm btn-info mr-2" href="{{ route('admin.collections.show', $collection) }}">
+                                        {{ trans('global.view') }}
+                                    </a>
+                                @endcan
+                                @can('collection_edit')
+                                    <a class="btn btn-sm btn-success mr-2" href="{{ route('admin.collections.edit', $collection) }}">
+                                        {{ trans('global.edit') }}
+                                    </a>
+                                @endcan
+                                @can('collection_delete')
+                                    <button class="btn btn-sm btn-rose mr-2" type="button" wire:click="confirm('delete', {{ $collection->id }})" wire:loading.attr="disabled">
+                                        {{ trans('global.delete') }}
+                                    </button>
+                                @endcan
+                            </div>
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="10">No entries found.</td>
+                    </tr>
+                @endforelse
                 </tbody>
             </table>
         </div>
@@ -156,10 +163,10 @@
 @push('scripts')
     <script>
         Livewire.on('confirm', e => {
-    if (!confirm("{{ trans('global.areYouSure') }}")) {
-        return
-    }
-@this[e.callback](...e.argv)
-})
+            if (!confirm("{{ trans('global.areYouSure') }}")) {
+                return
+            }
+        @this[e.callback](...e.argv)
+        })
     </script>
 @endpush
