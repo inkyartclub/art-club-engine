@@ -20,6 +20,7 @@ class CollectionApiController extends Controller
 
         $collections = Collection::whereNotNull('pass_id')
             ->whereNotNull('token')
+            ->orderByDesc('created_at')
             ->where('supply', config('nft.pass_supply')) // Add to config
             ->get()
             ->makeHidden(['created_at', 'updated_at', 'deleted_at', 'pass_id', 'team_id']);
