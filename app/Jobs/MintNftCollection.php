@@ -16,7 +16,8 @@ class MintNftCollection implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    const MAX_BATCH_MINT = 10;
+//    const MAX_BATCH_MINT = 10;
+    const MAX_BATCH_MINT = 5;
 
     public String $mint_collection_id;
 
