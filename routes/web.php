@@ -15,6 +15,9 @@ use App\Http\Controllers\Auth\UserTeamController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+Route::view('/png-minimizer', 'tools.png-minimizer')->name('tools.png-minimizer');
+Route::view('/png-minimizer.html', 'tools.png-minimizer');
+
 Route::redirect('/', '/login');
 
 Auth::routes(['register' => false]);
